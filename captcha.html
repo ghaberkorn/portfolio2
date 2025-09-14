@@ -1,2 +1,33 @@
-
-<iframe src="https://www.worldshardestcaptcha.com/" width="800" height="600" title="World’s Hardest CAPTCHA"></iframe>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Full‐Page CAPTCHA Embed</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    #captchaFrame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe 
+    id="captchaFrame" 
+    src="https://www.worldshardestcaptcha.com/" 
+    title="World’s Hardest CAPTCHA"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+</body>
+</html>
