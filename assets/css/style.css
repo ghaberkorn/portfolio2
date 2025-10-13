@@ -718,4 +718,94 @@ section .container {
   }
 }
 
+.feature-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  gap: 14px;
+  padding: 36px 28px;
+  border-radius: 18px;
+  border: 1px solid var(--card-border, rgba(30, 144, 255, 0.4));
+  background: linear-gradient(155deg, var(--card-surface, rgba(30, 144, 255, 0.12)) 0%, rgba(8, 22, 29, 0.92) 45%, rgba(4, 12, 18, 0.95) 100%);
+  box-shadow: 0 24px 48px -26px var(--card-shadow, rgba(30, 144, 255, 0.55)), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  backdrop-filter: blur(6px);
+  height: 100%;
+  min-height: 360px;
+}
 
+.feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--card-highlight, rgba(30, 144, 255, 0.38)), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.feature-card img {
+  aspect-ratio: 3 / 2;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 10px;
+  flex-shrink: 0;
+  box-shadow: 0 12px 30px -18px rgba(0, 0, 0, 0.8);
+}
+
+.feature-card h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--card-heading, #e4f0ff);
+  margin-bottom: 6px;
+}
+
+.feature-card p {
+  color: var(--card-text, rgba(224, 236, 255, 0.8));
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--card-border-strong, #1e90ff);
+  box-shadow: 0 30px 56px -24px var(--card-shadow-hover, rgba(30, 144, 255, 0.65)), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.feature-card:hover::after {
+  opacity: 0.4;
+}
+
+.feature-card .badge {
+  align-self: flex-start;
+}
+
+.coursework-card {
+  --card-border: rgba(30, 144, 255, 0.4);
+  --card-surface: rgba(30, 144, 255, 0.12);
+  --card-shadow: rgba(30, 144, 255, 0.55);
+  --card-shadow-hover: rgba(30, 144, 255, 0.65);
+  --card-highlight: rgba(30, 144, 255, 0.38);
+  --card-border-strong: #1e90ff;
+  --card-heading: #e4f0ff;
+  --card-text: rgba(224, 236, 255, 0.8);
+}
+
+.activity-card {
+  --card-border: rgba(129, 91, 255, 0.42);
+  --card-surface: rgba(118, 82, 255, 0.16);
+  --card-shadow: rgba(118, 82, 255, 0.45);
+  --card-shadow-hover: rgba(118, 82, 255, 0.6);
+  --card-highlight: rgba(144, 104, 255, 0.4);
+  --card-border-strong: #815bff;
+  --card-heading: #f2ecff;
+  --card-text: rgba(242, 236, 255, 0.82);
+}
