@@ -794,16 +794,6 @@ section .container {
   left: -5000px;
 }
 
-.newsletter-status {
-  margin: 0;
-  color: #63eda3;
-  font-size: 0.95rem;
-}
-
-.newsletter-status.error {
-  color: #ff7b7b;
-}
-
 @media (max-width: 768px) {
   .newsletter-card {
     flex-direction: column;
