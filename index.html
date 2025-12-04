@@ -220,6 +220,26 @@
           </div>
         </div>
       </div>
+
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="newsletter-card">
+            <div class="newsletter-copy">
+              <p class="eyebrow">Newsletter</p>
+              <h3>Occasional updates</h3>
+              <p class="mb-0">Irregular emails with whatever I'm building, learning, or writing. No spam, unsubscribe anytime.</p>
+            </div>
+            <form action="/api/subscribe" method="post" class="newsletter-form" novalidate>
+              <label for="bd-email" class="sr-only">Email address</label>
+              <input type="email" name="email" id="bd-email" placeholder="you@example.com" required>
+              <input type="text" name="confirm" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true">
+              <input type="hidden" name="tag" value="portfolio-site">
+              <button type="submit">Join the list</button>
+              <p class="newsletter-status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -242,6 +262,59 @@
     });
   </script>
   <script src="assets/js/main.js"></script>
+  <script>
+    (function() {
+      const form = document.querySelector('.newsletter-form');
+      if (!form) return;
+
+      const status = form.querySelector('.newsletter-status');
+      const resetStatus = () => {
+        if (status) {
+          status.textContent = '';
+          status.classList.remove('error');
+        }
+      };
+
+      form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        resetStatus();
+
+        const formData = new FormData(form);
+        if ((formData.get('confirm') || '').trim()) {
+          // Honeypot filled; silently abort.
+          return;
+        }
+
+        const email = (formData.get('email') || '').trim();
+        if (!email) {
+          status.textContent = 'Please add an email.';
+          status.classList.add('error');
+          return;
+        }
+
+        status.textContent = 'Saving...';
+
+        try {
+          const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData)
+          });
+
+          if (!response.ok) {
+            throw new Error('Request failed');
+          }
+
+          const data = await response.json().catch(() => ({}));
+          status.textContent = data.message || 'Added.';
+          form.reset();
+        } catch (err) {
+          status.textContent = 'Could not save. Try again.';
+          status.classList.add('error');
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
