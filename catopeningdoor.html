@@ -7,16 +7,14 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
-    iframe { display: block; width: 100%; height: 100%; border: none; }
+    video { display: block; width: 100%; height: 100%; object-fit: cover; }
   </style>
 </head>
 <body>
 
-  <iframe
-    src="https://commons.wikimedia.org/wiki/File:Cat_opening_door.webm?embedplayer=true"
-    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; web-share"
-    allowfullscreen
-  ></iframe>
+  <video autoplay loop muted playsinline>
+    <source src="cat.webm" type="video/webm">
+  </video>
 
 </body>
 </html>
